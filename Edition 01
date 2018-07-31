@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+import numpy as ny
+import pandas as pd
+
+filename = '300-1 LC.xlsx'
+title='3LC'
+data = pd.read_excel(filename)
+#print(data)
+
+#fig = plt.figure(dpi=128, figsize=(10,6))
+data.plot(x='Depth (nm)', y='Load (µN)', linewidth=1)
+
+#plt.title(title, fontsize=14)
+plt.legend(loc='upper left', fontsize=14)
+
+plt.xlabel(r'Depth '+'(nm)', fontsize=14)
+plt.ylabel(r'Load ('+'$\mu$'+'N)', fontsize=14)
+plt.tick_params(axis='both',which='major', labelsize=14) 
+#刻度样式 axis='both','x','y', which='major','minor','both'
+
+plt.xlim(0,1700)
+plt.ylim(0,900)
+plt.xticks(ny.linspace(0,1700,18,endpoint=True)) 
+plt.yticks(ny.linspace(0,900,10,endpoint=True))
+plt.tick_params(direction='in')
+
+plt.show()
+#plt.savefig(title, bbox_inches='tight', dpi=300)
