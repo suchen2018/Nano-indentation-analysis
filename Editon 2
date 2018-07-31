@@ -1,0 +1,81 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jul 29 21:38:17 2018
+
+@author: Chen
+"""
+
+import matplotlib.pyplot as plt
+import numpy as ny
+import pandas as pd
+
+filename01 = 'SuChen01.xlsx'
+title01 ='Smaple a1'
+data01 = pd.read_excel(filename01)
+
+filename02 = 'SuChen02.xlsx'
+title02 ='Smaple a2'
+data02 = pd.read_excel(filename02)
+
+filename03 = 'SuChen03.xlsx'
+title03 ='Smaple a3'
+data03 = pd.read_excel(filename03)
+
+filename04 = 'SuChen04.xlsx'
+title04 ='Smaple a4'
+data04 = pd.read_excel(filename04)
+
+filename05 = 'SuChen05.xlsx'
+title05 ='Smaple a5'
+data05 = pd.read_excel(filename05)
+
+fig = plt.figure(dpi=128, figsize=(15,6))
+
+plt.subplot(1,2,1)
+plt.plot(data01['Depth (nm)'], data01['Load (µN)'], 
+                linewidth=3, label='sample a1 (200 $\mu$N)', 
+                color='red')
+plt.plot(data02['Depth (nm)'],data02['Load (µN)'],
+                linewidth=3, label='sample a2 (350 $\mu$N)', 
+                color='green')
+plt.plot(data03['Depth (nm)'],data03['Load (µN)'],
+                linewidth=3, label='sample a3 (300 $\mu$N)', 
+                color='blue')
+
+plt.title('(a)', fontsize=16, fontweight='bold', loc ='left')
+plt.legend(loc='upper left', fontsize=12)
+plt.xlabel(r'Depth '+'(nm)', fontsize=12)
+plt.ylabel(r'Load ('+'$\mu$'+'N)', fontsize=12)
+plt.tick_params(axis='both', labelsize=12, direction='in') 
+x1=5000
+y1=400
+plt.xlim(0,x1)
+plt.ylim(0,y1)
+plt.xticks(ny.linspace(0,x1,x1/1000+1,endpoint=True)) 
+plt.yticks(ny.linspace(0,y1,y1/100+1,endpoint=True))
+
+
+
+plt.subplot(1,2,2)
+plt.plot(data03['Depth (nm)'],data03['Load (µN)'],
+                linewidth=3, label='sample a3 (300 $\mu$N)', color='red')
+plt.plot(data04['Depth (nm)'], data04['Load (µN)'], 
+                linewidth=3, label='sample a4 (300 $\mu$N)', color='green')
+plt.plot(data05['Depth (nm)'],data05['Load (µN)'],
+                linewidth=3, label='sample a5 (300 $\mu$N)', color='blue')
+
+plt.title('(b)', fontsize=16, fontweight='bold', loc ='left')
+plt.legend(loc='upper left', fontsize=12)
+plt.xlabel(r'Depth '+'(nm)', fontsize=12)
+plt.ylabel(r'Load ('+'$\mu$'+'N)', fontsize=12)
+plt.tick_params(axis='both', labelsize=12, direction='in') 
+x2=4000
+y2=400
+plt.xlim(0,x2)
+plt.ylim(0,y2)
+plt.xticks(ny.linspace(0,x2,x2/1000+1,endpoint=True)) 
+plt.yticks(ny.linspace(0,y2,y2/100+1,endpoint=True))
+
+#plt.show()
+plt.savefig('nano-4.jpg', bbox_inches='tight', dpi=300)
+plt.savefig('nano-5.jpg', dpi=300)
