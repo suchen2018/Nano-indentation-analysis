@@ -1,0 +1,54 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+filename = 'CS 01 z.xlsx'
+#title ='Smaple a1'
+data = pd.read_excel(filename)
+
+n_group=86
+x = np.arange(1, n_group+1)
+#print(x)
+
+label=[]
+for i in range(1, n_group+1, 1):
+    label.append(str(i))
+
+y1 = data['Er(GPa)']*1000
+y2 = data['H(GPa)']*1000
+
+fig, ax1 = plt.subplots()
+ax2 = ax1.twinx()
+
+rects1 = ax1.plot(x, y1, label='Modulus', color='#9999ff')
+rects2 = ax2.plot(x, y2, label='Hardness', color='#ff9999')
+
+#ax1.set_title('Scores by group and gender')        
+#ax1.set_xticklabels(label, fontsize=12)
+ax1.set_xlim(1, 33)
+ax1.set_xticks(np.linspace(1, 33, 9,endpoint=True))
+ax1.set_xlabel('Cycles')
+
+ax1.legend(fontsize=12, loc='upper left')
+ax2.legend(fontsize=12, loc='upper center')                 
+                                 
+ax1.set_ylabel('Modulus (MPa)', fontsize=12)
+ax1.tick_params(direction='in')
+ax2.set_ylabel('Hardness (MPa)', fontsize=12)
+ax2.tick_params(direction='in')
+
+
+n=600
+m=500
+ax1.set_ylim(n,m)
+ax1.set_yticks(np.linspace(n,m,6,endpoint=True))
+
+n=10
+m=20
+ax2.set_ylim(n,m)
+ax2.set_yticks(np.linspace(n,m,6,endpoint=True)) 
+
+fig.tight_layout()
+plt.show()
+#plt.savefig('E and H.jpg', bbox_inches='tight', dpi=300)
+##fig.savefig('yourfilename.png')
