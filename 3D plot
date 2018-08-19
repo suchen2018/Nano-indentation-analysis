@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jul 19 17:19:36 2018
+
+@author: n10027301
+"""
+
+import matplotlib.pyplot as plt
+import numpy as ny
+import pandas as pd
+from mpl_toolkits.mplot3d import Axes3D
+
+filename = '300-1 LC.xlsx'
+title='3LC'
+data = pd.read_excel(filename)
+
+fig=plt.figure()
+ax = Axes3D(fig)
+
+x = data['Load (µN)']
+y = data['Time (s)']
+z = data['Depth (nm)']
+
+ax.set_xlabel(r'Load ('+'$\mu$'+'N)', fontsize=14)
+ax.set_ylabel(r'Time (s)', fontsize=14)
+ax.set_zlabel(r'Depth (nm)', fontsize=14)
+ax.set_xlim(0, x.max() * 1.1)
+ax.set_ylim(0, y.max() * 1.1)
+ax.set_zlim(0, z.max() * 1.1)
+ax.tick_params(axis='both', labelsize=14, direction='in')
+
+ax.plot(x, y, z, linewidth=1, label='sample b1 (300 $\mu$N)')
+ax.legend(fontsize=14)
+
+plt.show()
